@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Tile } from "../ui/components/tile";
 import { FocusScope } from "../ui/focus/focus-scope";
@@ -15,10 +14,11 @@ export default function HomeScreen() {
       focusKey="HOME_GRID"
       preferredChildFocusKey="HOME_TILE_1"
       initialFocusKey="HOME_TILE_1"
+      className="w-full"
     >
       <h1 className="m-0 text-tv-title">Home</h1>
 
-      <div className="mt-[30px] grid grid-cols-4 gap-5">
+      <div className="mt-[30px] grid w-full grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
         {items.map((it) => (
           <Tile
             key={it.id}

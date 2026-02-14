@@ -28,7 +28,7 @@ export function AppLayout({ system }: { system: SystemApi }) {
   }, [modalOpen, location.pathname, navigate]);
 
   return (
-    <div className="p-10">
+    <div className="min-h-screen w-full px-8 py-8 tv1080:px-10 tv1080:py-10">
       <div className="mb-4 flex gap-3">
         <FocusButton label="Open Settings" onPress={() => setModalOpen(true)} />
       </div>
