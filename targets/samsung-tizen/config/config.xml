@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+  xmlns:tizen="http://tizen.org/ns/widgets"
+  id="com.example.tvapp"
+  version="0.0.1">
+
+  <name>TV App</name>
+  <content src="index.html"/>
+
+  <tizen:application id="com.example.tvapp" package="comexampletvapp" required_version="2.3"/>
+</widget>

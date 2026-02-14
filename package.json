@@ -1,0 +1,37 @@
+{
+  "name": "html-tv-app",
+  "version": "1.0.0",
+  "description": "HTML TV App",
+  "homepage": "https://github.com/vageez/html-tv-app#readme",
+  "bugs": {
+    "url": "https://github.com/vageez/html-tv-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vageez/html-tv-app.git"
+  },
+  "license": "ISC",
+  "author": "angelo vagenas",
+  "type": "module",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tv:build": "bash scripts/tv-build.sh"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "@noriginmedia/norigin-spatial-navigation": "^2.3.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0",
+    "react-virtuoso": "^4.18.1"
+  }
+}

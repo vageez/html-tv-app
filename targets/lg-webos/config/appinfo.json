@@ -1,0 +1,9 @@
+{
+  "id": "com.example.tvapp",
+  "version": "0.0.1",
+  "vendor": "Example",
+  "type": "web",
+  "main": "index.html",
+  "title": "TV App",
+  "icon": "icon.png"
+}
