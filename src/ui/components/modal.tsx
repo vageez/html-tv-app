@@ -1,9 +1,21 @@
 import React, { useEffect } from "react";
 import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
 import { pushBackHandler } from "../../tv/back-handler";
+import { logFocusableDebugTable } from "../focus/debug";
 
 function ModalCloseButton({ onClose }: { onClose: () => void }) {
-  const { ref, focused } = useFocusable({ onEnterPress: onClose });
+  const {
+    ref,
+    focused,
+    focusKey,
+  } = useFocusable({ onEnterPress: onClose });
+
+  useEffect(() => {
+    if (!focused) return;
+    const el = ref.current as HTMLElement | null;
+    if (!el) return;
+    logFocusableDebugTable(el, focusKey);
+  }, [focused, focusKey, ref]);
 
   return (
     <div
@@ -11,6 +23,8 @@ function ModalCloseButton({ onClose }: { onClose: () => void }) {
       role="button"
       tabIndex={-1}
       onClick={onClose}
+      data-focusable-item="true"
+      data-focus-key={focusKey}
       className={[
         "rounded-[10px] bg-neutral-800 px-3 py-2 text-tv-body transition duration-150",
         focused
@@ -32,7 +46,12 @@ export function Modal({
   onClose: () => void;
   children: React.ReactNode;
 }) {
-  const { ref, focusSelf } = useFocusable({
+  const {
+    ref,
+    focusSelf,
+    focusKey,
+    focused,
+  } = useFocusable({
     focusKey: "MODAL_ROOT",
     isFocusBoundary: true,
   });
@@ -50,10 +69,19 @@ export function Modal({
     });
   }, [onClose]);
 
+  useEffect(() => {
+    if (!focused) return;
+    const el = ref.current as HTMLElement | null;
+    if (!el) return;
+    logFocusableDebugTable(el, focusKey);
+  }, [focused, focusKey, ref]);
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/65">
       <div
         ref={ref as any}
+        data-focusable-item="true"
+        data-focus-key={focusKey}
         className="w-[70vw] max-w-[900px] rounded-[18px] bg-neutral-950 p-6 outline-4 outline-white/20"
       >
         <div className="mb-4 flex justify-between">

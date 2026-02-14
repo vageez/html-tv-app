@@ -1,4 +1,6 @@
+import React from "react";
 import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { logFocusableDebugTable } from "../focus/debug";
 
 type FocusButtonProps = {
   label: string;
@@ -7,7 +9,18 @@ type FocusButtonProps = {
 };
 
 export function FocusButton({ label, onPress, focusKey }: FocusButtonProps) {
-  const { ref, focused } = useFocusable({ onEnterPress: onPress, focusKey });
+  const {
+    ref,
+    focused,
+    focusKey: resolvedFocusKey,
+  } = useFocusable({ onEnterPress: onPress, focusKey });
+
+  React.useEffect(() => {
+    if (!focused) return;
+    const el = ref.current as HTMLElement | null;
+    if (!el) return;
+    logFocusableDebugTable(el, resolvedFocusKey);
+  }, [focused, ref, resolvedFocusKey]);
 
   return (
     <div
@@ -15,6 +28,8 @@ export function FocusButton({ label, onPress, focusKey }: FocusButtonProps) {
       role="button"
       tabIndex={-1}
       onClick={onPress}
+      data-focusable-item="true"
+      data-focus-key={resolvedFocusKey}
       className={[
         "inline-flex cursor-pointer items-center justify-center rounded-xl px-3.5 py-2.5 text-tv-body text-neutral-900 transition duration-150",
         focused
