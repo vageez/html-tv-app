@@ -3,6 +3,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import type { SystemApi } from "../system/types";
 import { pushBackHandler } from "../tv/back-handler";
 import { Modal } from "../ui/components/modal";
+import { FocusButton } from "../ui/components/focus-button";
 
 export function AppLayout({ system }: { system: SystemApi }) {
   const navigate = useNavigate();
@@ -27,15 +28,9 @@ export function AppLayout({ system }: { system: SystemApi }) {
   }, [modalOpen, location.pathname, navigate]);
 
   return (
-    <div style={{ padding: 40 }}>
-      <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
-        {/* mouse-friendly for now; we’ll convert to focusable later */}
-        <button
-          onClick={() => setModalOpen(true)}
-          style={{ fontSize: 18, padding: "10px 14px" }}
-        >
-          Open Settings
-        </button>
+    <div className="p-10">
+      <div className="mb-4 flex gap-3">
+        <FocusButton label="Open Settings" onPress={() => setModalOpen(true)} />
       </div>
 
       <Suspense fallback={<div>Loading…</div>}>
@@ -44,7 +39,7 @@ export function AppLayout({ system }: { system: SystemApi }) {
 
       {modalOpen && (
         <Modal title="Settings" onClose={() => setModalOpen(false)}>
-          <p style={{ marginTop: 0 }}>Modal content here.</p>
+          <p className="mt-0">Modal content here.</p>
         </Modal>
       )}
     </div>

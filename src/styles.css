@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --text-tv-caption: 1rem;
+  --text-tv-caption--line-height: 1.35;
+  --text-tv-caption--letter-spacing: 0.01em;
+
+  --text-tv-body: 1.125rem;
+  --text-tv-body--line-height: 1.45;
+  --text-tv-body--letter-spacing: 0.01em;
+
+  --text-tv-body-lg: 1.25rem;
+  --text-tv-body-lg--line-height: 1.45;
+  --text-tv-body-lg--letter-spacing: 0.01em;
+
+  --text-tv-title: 2rem;
+  --text-tv-title--line-height: 1.15;
+  --text-tv-title--letter-spacing: -0.01em;
+
+  --text-tv-display: 2.75rem;
+  --text-tv-display--line-height: 1.05;
+  --text-tv-display--letter-spacing: -0.02em;
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  html {
+    /* Tune rem scale for living-room distances */
+    font-size: 14px;
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  body {
+    @apply bg-neutral-900 text-tv-body text-white antialiased;
+  }
+}

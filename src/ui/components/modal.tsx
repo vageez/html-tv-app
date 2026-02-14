@@ -11,13 +11,12 @@ function ModalCloseButton({ onClose }: { onClose: () => void }) {
       role="button"
       tabIndex={-1}
       onClick={onClose}
-      style={{
-        padding: "8px 12px",
-        borderRadius: 10,
-        fontSize: 18,
-        background: "#222",
-        outline: focused ? "4px solid white" : "4px solid transparent",
-      }}
+      className={[
+        "rounded-[10px] bg-neutral-800 px-3 py-2 text-tv-body transition duration-150",
+        focused
+          ? "scale-[1.03] outline-4 outline-white"
+          : "outline-4 outline-transparent",
+      ].join(" ")}
     >
       Close
     </div>
@@ -52,36 +51,13 @@ export function Modal({
   }, [onClose]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.65)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-      }}
-    >
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/65">
       <div
         ref={ref as any}
-        style={{
-          width: "70vw",
-          maxWidth: 900,
-          background: "#111",
-          borderRadius: 18,
-          padding: 24,
-          outline: "4px solid rgba(255,255,255,0.2)",
-        }}
+        className="w-[70vw] max-w-[900px] rounded-[18px] bg-neutral-950 p-6 outline-4 outline-white/20"
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: 16,
-          }}
-        >
-          <h2 style={{ margin: 0 }}>{title}</h2>
+        <div className="mb-4 flex justify-between">
+          <h2 className="m-0 text-tv-title">{title}</h2>
           <ModalCloseButton onClose={onClose} />
         </div>
 

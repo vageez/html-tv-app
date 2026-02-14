@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createSystem } from "./system/createSystem";
 import { initRemoteManager } from "./tv/remote-manager";
+import "./styles.css";
 
 import { App } from "./app";
 

@@ -21,9 +21,11 @@
     "tv:build": "bash scripts/tv-build.sh"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.12",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5.6.0",
     "vite": "^5.4.0"
   },

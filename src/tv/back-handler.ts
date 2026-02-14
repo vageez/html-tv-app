@@ -5,7 +5,7 @@ const stack: BackHandler[] = [];
 export function pushBackHandler(handler: BackHandler) {
   stack.push(handler);
   return () => {
-    const i = stack.indexOf(handler);
+    const i = stack.lastIndexOf(handler);
     if (i >= 0) stack.splice(i, 1);
   };
 }

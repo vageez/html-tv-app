@@ -1,63 +1,7 @@
-import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-
-function FocusButton({
-  label,
-  onEnter,
-}: {
-  label: string;
-  onEnter: () => void;
-}) {
-  const { ref, focused } = useFocusable({ onEnterPress: onEnter });
-
-  return (
-    <div
-      ref={ref as any}
-      role="button"
-      tabIndex={-1}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "10px 14px",
-        borderRadius: 12,
-        fontSize: 18,
-        background: "#d1d1d1",
-        border: "1px solid #ffff",
-        outline: focused ? "4px solid white" : "4px solid transparent",
-      }}
-      // keep mouse support for desktop dev
-      onClick={onEnter}
-    >
-      {label}
-    </div>
-  );
-}
-
-function Tile({ label, onEnter }: { label: string; onEnter: () => void }) {
-  const { ref, focused } = useFocusable({
-    onEnterPress: onEnter,
-  });
-
-  return (
-    <div
-      ref={ref as any}
-      style={{
-        width: 220,
-        height: 120,
-        borderRadius: 14,
-        background: "#333",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 20,
-        outline: focused ? "4px solid white" : "4px solid transparent",
-      }}
-    >
-      {label}
-    </div>
-  );
-}
+import { Tile } from "../ui/components/tile";
+import { FocusScope } from "../ui/focus/focus-scope";
 
 export default function HomeScreen() {
   const navigate = useNavigate();
@@ -67,37 +11,23 @@ export default function HomeScreen() {
   }));
 
   return (
-    <div>
-      <h1 style={{ margin: 0 }}>Home</h1>
+    <FocusScope
+      focusKey="HOME_GRID"
+      preferredChildFocusKey="HOME_TILE_1"
+      initialFocusKey="HOME_TILE_1"
+    >
+      <h1 className="m-0 text-tv-title">Home</h1>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 240px)",
-          gap: 20,
-          marginTop: 30,
-        }}
-      >
+      <div className="mt-[30px] grid grid-cols-4 gap-5">
         {items.map((it) => (
-          <div
+          <Tile
             key={it.id}
-            onClick={() => navigate(`/details/${it.id}`)}
-            style={{
-              width: 220,
-              height: 120,
-              borderRadius: 14,
-              background: "#333",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 20,
-              cursor: "pointer",
-            }}
-          >
-            {it.label}
-          </div>
+            label={it.label}
+            focusKey={`HOME_TILE_${it.id}`}
+            onPress={() => navigate(`/details/${it.id}`)}
+          />
         ))}
       </div>
-    </div>
+    </FocusScope>
   );
 }

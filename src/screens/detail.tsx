@@ -1,20 +1,26 @@
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { FocusButton } from "../ui/components/focus-button";
+import { FocusScope } from "../ui/focus/focus-scope";
 
 export default function DetailsScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h1 style={{ margin: 0 }}>Details</h1>
-      <p style={{ fontSize: 22 }}>Selected item: {id}</p>
+    <FocusScope
+      focusKey="DETAIL_ROOT"
+      preferredChildFocusKey="DETAIL_BACK_BUTTON"
+      initialFocusKey="DETAIL_BACK_BUTTON"
+    >
+      <h1 className="m-0 text-tv-title">Details</h1>
+      <p className="text-tv-body-lg">Selected item: {id}</p>
 
-      <button
-        onClick={() => navigate(-1)}
-        style={{ fontSize: 18, padding: "10px 14px" }}
-      >
-        Back
-      </button>
-    </div>
+      <FocusButton
+        label="Back"
+        focusKey="DETAIL_BACK_BUTTON"
+        onPress={() => navigate(-1)}
+      />
+    </FocusScope>
   );
 }
